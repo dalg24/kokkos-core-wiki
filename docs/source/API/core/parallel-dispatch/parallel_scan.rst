@@ -21,13 +21,13 @@ Dispatches parallel work defined by ``functor`` according to the *ExecutionPolic
 Interface
 ---------
 
-.. cpp:function:: template <class ExecPolicy, class FunctorType> Kokkos::parallel_scan(const std::string& name, const ExecPolicy& policy, const FunctorType& functor);
+.. cpp:function:: template <class ExecPolicy, class FunctorType> parallel_scan(const std::string& name, const ExecPolicy& policy, const FunctorType& functor);
 
-.. cpp:function:: template <class ExecPolicy, class FunctorType> Kokkos::parallel_scan(const ExecPolicy&  policy, const FunctorType& functor);
+.. cpp:function:: template <class ExecPolicy, class FunctorType> parallel_scan(const ExecPolicy&  policy, const FunctorType& functor);
 
-.. cpp:function:: template <class ExecPolicy, class FunctorType, class ReturnType> Kokkos::parallel_scan(const std::string& name, const ExecPolicy&  policy, const FunctorType& functor, ReturnType& return_value);
+.. cpp:function:: template <class ExecPolicy, class FunctorType, class ReturnType> parallel_scan(const std::string& name, const ExecPolicy&  policy, const FunctorType& functor, ReturnType& return_value);
 
-.. cpp:function:: template <class ExecPolicy, class FunctorType, class ReturnType> Kokkos::parallel_scan(const ExecPolicy&  policy, const FunctorType& functor, ReturnType& return_value);
+.. cpp:function:: template <class ExecPolicy, class FunctorType, class ReturnType> parallel_scan(const ExecPolicy&  policy, const FunctorType& functor, ReturnType& return_value);
 
 Parameters:
 ~~~~~~~~~~~

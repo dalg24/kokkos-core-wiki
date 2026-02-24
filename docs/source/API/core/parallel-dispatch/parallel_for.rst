@@ -23,9 +23,9 @@ used by profiling and debugging tools. This call may be asynchronous and return 
 Interface
 ---------
 
-.. cpp:function:: template <class ExecPolicy, class FunctorType> Kokkos::parallel_for(const std::string& name, const ExecPolicy& policy, const FunctorType& functor);
+.. cpp:function:: template <class ExecPolicy, class FunctorType> parallel_for(const std::string& name, const ExecPolicy& policy, const FunctorType& functor);
 
-.. cpp:function:: template <class ExecPolicy, class FunctorType> Kokkos::parallel_for(const ExecPolicy& policy, const FunctorType& functor);
+.. cpp:function:: template <class ExecPolicy, class FunctorType> parallel_for(const ExecPolicy& policy, const FunctorType& functor);
 
 Parameters:
 ~~~~~~~~~~~

@@ -54,29 +54,37 @@ Description
 
       Move constructor
 
-   .. cpp:function:: TeamPolicy(index_type league_size, index_type team_size, index_type vector_length=1)
+   .. cpp:function:: TeamPolicy(int league_size, int team_size, int vector_length=1)
+   .. cpp:function:: TeamPolicy(int league_size, AUTO_t, int vector_length=1)
+   .. cpp:function:: TeamPolicy(int league_size, int team_size, AUTO_t)
+   .. cpp:function:: TeamPolicy(int league_size, AUTO_t, AUTO_t)
+   .. cpp:function:: TeamPolicy(execution_space space, int league_size, int team_size, int vector_length=1)
+   .. cpp:function:: TeamPolicy(execution_space space, int league_size, AUTO_t, int vector_length=1)
+   .. cpp:function:: TeamPolicy(execution_space space, int league_size, int team_size, AUTO_t)
+   .. cpp:function:: TeamPolicy(execution_space space, int league_size, AUTO_t, AUTO_t)
 
-      Request to launch ``league_size`` work items, each of which is assigned to a team of threads
-      with ``team_size`` threads, using a vector length of ``vector_length``. If the team size is not possible when
-      calling a parallel policy, that kernel launch may throw.
+      Constructs a policy to launch a "league" of thread teams. This defines
+      the hierarchical parallel execution pattern used in
+      :cpp:func:`parallel_for`, :cpp:func:`parallel_reduce`, or
+      :cpp:func:`parallel_scan`.
+      
+      :param space: (Optional) The execution space instance on which to run the kernel.
+      :param league_size: Total number of work items (teams) to launch.
+      :param team_size: Number of threads per team. If ``Kokkos::AUTO`` is used,
+        Kokkos will determine an optimal size based on the functor's resource
+        requirements and the hardware.
+      :param vector_length: The number of SIMD/SIMT lanes per thread. If
+        ``Kokkos::AUTO`` is used, Kokkos will pick the vector length.
 
-   .. cpp:function:: TeamPolicy(index_type league_size, AUTO_t, index_type vector_length=1)
+      :preconditions:
+        * ``league_size`` must be :math:`\ge 0`
+        * ``team_size`` must be :math:`\ge 1`
+        * ``vector_length``
 
-      Request to launch ``league_size`` work items, each of which is assigned to a team of threads of a
-      size determined by Kokkos, using a vector length of ``vector_length``. The team size may be determined
-      lazily at launch time, taking into account properties of the functor.
+          * must be :math:`\ge 1`
+          * must be :math:`\le` the value returned by :cpp:func:`TeamPolicy::vector_length_max`
+          * must be a power of two
 
-   .. cpp:function:: TeamPolicy(execution_space space, index_type league_size, index_type team_size, index_type vector_length=1)
-
-      Request to launch ``league_size`` work items, each of which is assigned to a team of threads with ``team_size`` threads,
-      using a vector length of ``vector_length``. If the team size is not possible when calling a parallel policy,
-      that kernel launch may throw. Use the provided execution space instance during a kernel launch.
-
-   .. cpp:function:: TeamPolicy(execution_space space, index_type league_size, AUTO_t, index_type vector_length=1)
-
-      Request to launch ``league_size`` work items, each of which is assigned to a team of threads of a size determined by Kokkos,
-      using a vector length of ``vector_length``. The team size may be determined lazily at launch time, taking into
-      account properties of the functor. Use the provided execution space instance during a kernel launch.
 
    .. rubric:: Runtime Settings
 
